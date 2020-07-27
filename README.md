@@ -1,5 +1,5 @@
 # Collection of static websites by me in some old times
-    - Includes games
+    - Includes games :sunglasses:
     - PHP based games
     - Available for free
     - Used by me personally
