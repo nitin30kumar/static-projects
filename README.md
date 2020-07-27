@@ -1,6 +1,6 @@
 # **Collection of static websites by me in some old times** :sunglasses:
 
-* Properties of this project
+> Properties of this project
  * Include games
  * Avalaible for free
  * Used by me personally
@@ -17,7 +17,7 @@
  * Music Player
  * Pig game
  * Love calculator :heart:
- * Love calculator PHP :violet_heart:
+ * Love calculator PHP :purple_heart:
  * Maze game
  * Photo Editing
  * Photo Editing PHP
@@ -34,7 +34,7 @@
     * For any query , feel free to contact me
 
 
-# Enjoy using these
-Hope you guys like these small projects
-Do comment about these and for any doubts may contact me ...
+> Enjoy using these
+> Hope you guys like these small projects
+> Do comment about these and for any doubts may contact me ...
 
