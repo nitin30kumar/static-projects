@@ -15,14 +15,14 @@
     - Guess It game ( batch file )
     - Music Player
     - Pig game
-    - Love calculator ( :heart: )
-    - Love calculator PHP ( :heart: )
+    - Love calculator :heart:
+    - Love calculator PHP :violet_heart:
     - Maze game
     - Photo Editing
     - Photo Editing PHP
     - SMS Bomber ( bombing large no of messages in specified time)
     - Car Driving game
-    - Tik Tok Toe game in PYTHON :double_heart:
+    - Tik Tok Toe game in PYTHON :two_hearts:
     - Typing Master game
     - Zombie Shooter game ( like PUBGM )
 
