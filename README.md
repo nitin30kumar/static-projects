@@ -1,4 +1,4 @@
-# Collection of static websites by me in some old times
+# Collection of static websites by me in some old times :sunglasses:
     - Includes games :sunglasses:
     - PHP based games
     - Available for free
