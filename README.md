@@ -1,11 +1,9 @@
 # **Collection of static websites by me in some old times** :sunglasses:
-    - Includes games :sunglasses:
-    - PHP based games
-    - Available for free
-    - Used by me personally
-    - Made all these in 3 years of my Graduation
-    - JS related websites too
-    - Python also present
+
+* Properties of this project
+ * Include games
+ * Avalaible for free
+ * Used by me personally
 
 # Includes following topics -
     - ARKANOID game
