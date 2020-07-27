@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+<style>
+  body{
+    background-repeat: no-repeat;
+    background-size:cover;
+    /*background-image:linear-gradient(to right,#fa709a 0%, #fee140 100%);*/
+    /*background-image:linear-gradient(to right, #43e97b 0%,#38f9d7 100%);*/
+    /*background-image:linear-gradient(to top,#30cfd0 0%,#330867 100%);*/
+    /*background-image:linear-gradient(to top,#a8edea 0%,#fed6e3 100%);*/
+    /*background-image:linear-gradient(to top,#9890e3 0%,#b1f4cf 100%);*/
+    /*background-image:linear-gradient(180deg,#2af598 0%,#009efd 100%);*/
+    /*background-image:linear-gradient(to right,#eea2a2 0%,#bbc1bf 19%,#57c6e1 42%,#b49fda 79%,#7ac5d8 100%);*/
+    /*background-image:linear-gradient(to top,#fcc5e4 0%, #fda34b 15%,#ff7882 35%,#c8699e 52%,#7046aa 71%,#0c1db8 87%,#020f75 100%);*/
+    /*background-image:linear-gradient(to right, #92fe9d 0%,#00c9ff 100%);*/
+    /*background-image:linear-gradient(to right,#f83600 0%,#f9d423 100%);*/
+    /*background-image:linear-gradient(-20deg,#b721ff 0%,#21d4fd 100%);*/
+    /*background-image:linear-gradient(to right,#a8caba 0%,#5d4157 100%);*/
+    /*background-image:linear-gradient(-60deg,#16a085 0%,#f4d03f 100%);*/
+    /*background-image:linear-gradient(to top,#0fd850 0%,#f9f047 100%);*/
+    /*background-image:linear-gradient(to top,#209cff 0%,#68e0cf 100%);*/
+    /*background-image:linear-gradient(to top,#b3ffab 0%,#12fff7 100%);*/
+    /*background-image:linear-gradient(to right,#00dbde 0%,#fc00ff 100%); */ /*my favourite*/
+    /*background-image:linear-gradient(to right,#f9d423 0%,#ff4e50 100%);*/
+    /*background-image:linear-gradient(to top,#50cc7f 0%,#f5d100 100%);*/
+    /*background-image:linear-gradient(to top , #e14fad 0%,#f9d423 100%);*/  /* one of my favourite*/
+    background-image:linear-gradient(-225deg,#69EACB 0% , #EACCF8 48%, #6654F1 100%);
+  }
+
+
+
+  .glow{
+	-webkit-animation-duration:1s;
+	-webkit-animation-name:glow;
+	-webkit-animation-direction:alternative;
+	-webkit-animation-iteration-count:infinite;
+	animation-duration:1s;
+	animation-name:glow;
+	animation-direction:alternate;
+	animation-iteration-count:infinite;
+	}
+@-webkit-keyframes glow{
+	from { text-shadow: 0 0 0px darkorange; }
+	to { text-shadow: 0 0 20px darkmagenta; }
+}
+
+</style>
+
+  </head>
+
+  <body>
+  <div>
+    <center>
+      <h1 style="font-family:jokerman;font-size:73px;color:fuchsia;" class="glow">NitCode Hunter</h1>
+    
+    <div>
+      <input type="number" name="user_input" id="i_p" placeholder = "XXXX">
+      <button id = "submit">Submit</button>
+    </div>
+    <div>
+      <p id="o_p"></p>
+      <p id="code"></p>
+      <p id="check"></p>
+      <p id="is_game">Keep guessing</p>
+    </div>
+    <div>
+      <p></p>
+      <ul id = "step" style = "list-style: none;">
+        <li>
+          <b>Guess    &nbsp;&nbsp;&nbsp;     Result</b>
+        </li>
+      </ul>
+    </div>
+
+
+    <div id = "rules">
+      <b>Rules :</b>
+      <ul style="list-style-type:none;">
+        <li style="color:red;">
+          Each guess must consist of 4 numberic characters.
+        </li>
+        <li style="color:green;">
+          Numbers may be used more than once!
+        </li>
+        <li style="color:red;">
+          You win only if your guess is an exact match.
+        </li>
+        <li style="color:green;">
+          You lose if you fail to guess the code under 10 guesses.
+        </li>
+        <li style="color:red;">
+          Numbers may be used more than once!
+        </li>
+        <li style="color:green;">
+          'Y' Indicates a number is in the correct position.
+        </li>
+        <li style="color:red;">
+          'E' Indicates a number is part of the code, but not in the right position.
+        </li>
+        <li style="color:green;">
+          'E' Doesn't consider how many times a number exists in the code.
+        </li>
+        <li style="color:red;">
+           'X' Indicates a number is not part of the code.
+        </li>
+
+
+      </ul>
+    </div>
+    <script>
+    var secret_code = generateCode();
+    var step_counter = 0;
+    document.getElementById("submit").addEventListener("click", getInput);
+
+
+    function getInput(){
+      var x = document.getElementById('i_p').value;
+      var o_p = document.getElementById("o_p");
+      o_p.innerHTML = x;
+      processInput(x);
+    }
+
+    function processInput(input){
+        var n = input.length;
+        if(document.getElementById("submit").innerHTML === "Reset"){
+          cleanAll();
+          return;
+        }
+        else if(n>4){
+          o_p.innerHTML = "Input exceeds 4 character!";
+          return;
+        }
+        else if(n<4){
+          o_p.innerHTML = "Input is less than 4 character!";
+          return;
+        }
+        else if (step_counter === 10){
+          document.getElementById("is_game").innerHTML = "Fool, You Loose! Increase your logical thinking skills !";
+          resetGame();
+          return;
+        }
+        else {
+          step_counter++;
+          checkSubmission(input);
+          return;
+        }
+
+      return;
+    }
+
+    function generateCode(){
+      var code = "";
+      for(var i =0; i<4; i++){
+        var n = getRandomIntInclusive(0, 9);
+        code += n.toString();
+      }
+      return code;
+    }
+
+    function getRandomIntInclusive(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function checkSubmission(usr_input){
+      var match = false;
+      if(usr_input === secret_code){
+        document.getElementById("is_game").innerHTML = "Good guess! You win! Chicken Dinner!";
+        resetGame();
+      }
+      var result = "";
+
+      for(var i =0; i<4; i++){
+        var found = false;
+        if(usr_input[i] === secret_code[i]){
+          result += "Y ";
+          found = true;
+          continue;
+        }
+        for(var j = 0; j<4; j++){
+          if(usr_input[i] === secret_code[j]){
+            result += "E ";
+            found = true;
+            break;
+          }
+        }
+        if (!found){
+          result += "X ";
+        }
+      }
+      document.getElementById("check").innerHTML = result;
+      showSubmission(result, usr_input);
+      return;
+    }
+    function showSubmission(result, usr_input) {
+      var ul = document.getElementById("step");
+      var li = document.createElement("li");
+      li.appendChild(document.createTextNode(usr_input + " >>>   " +result));
+      ul.appendChild(li);
+    }
+
+    function resetGame(){
+      document.getElementById("submit").innerHTML = "Reset";
+    }
+
+    function cleanAll(){
+      secret_code = generateCode();
+      step_counter = 0;
+      document.getElementById("o_p").innerHTML = "";
+      document.getElementById("check").innerHTML = "";
+      document.getElementById("is_game").innerHTML = "Keep Guessing!!";
+      document.getElementById("step").innerHTML = "<li><b>Guess    &nbsp;&nbsp;&nbsp;     Result</b></li>";
+      document.getElementById("submit").innerHTML = "Submit";
+      return;
+    }
+
+    </script>
+</div>
+</center>
+<br><br><br>
+  </body>
+
+</html>
